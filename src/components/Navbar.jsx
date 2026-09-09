@@ -15,7 +15,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur">
       <nav className="max-w-4xl mx-auto flex items-center justify-between px-6 py-4">
         <span className="font-mono text-sm text-fg">
-          <span className="text-muted">~/</span>Vaibhav
+          <span className="text-muted"></span>Vaibhav Bombe
         </span>
 
         <div className="flex items-center gap-6 font-mono text-sm">

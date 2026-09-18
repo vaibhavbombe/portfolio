@@ -112,9 +112,7 @@ export default function Hero3D() {
           enableZoom={false}
           enablePan={false}
           autoRotate
-          autoRotateSpeed={0.8}
-          minPolarAngle={Math.PI / 2 - 0.6}
-          maxPolarAngle={Math.PI / 2 + 0.6}
+          autoRotateSpeed={2.0}
         />
       </Canvas>
     </div>

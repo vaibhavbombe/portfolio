@@ -13,7 +13,11 @@ import {
   SiMysql,
   SiPython,
   SiGit,
+  SiGithub,
+  SiDocker,
+  SiSocketdotio,
 } from 'react-icons/si'
+import { FaRobot } from 'react-icons/fa'
 
 const TECHS = [
   { id: 'js', icon: SiJavascript, color: '#F7DF1E', label: 'JavaScript' },
@@ -26,9 +30,13 @@ const TECHS = [
   { id: 'css3', icon: SiCss, color: '#1572B6', label: 'CSS3' },
   { id: 'python', icon: SiPython, color: '#3776AB', label: 'Python' },
   { id: 'git', icon: SiGit, color: '#F05032', label: 'Git' },
+  { id: 'github', icon: SiGithub, color: '#F5F5F3', label: 'GitHub' },
+  { id: 'docker', icon: SiDocker, color: '#2496ED', label: 'Docker' },
+  { id: 'socketio', icon: SiSocketdotio, color: '#F5F5F3', label: 'Socket.io' },
+  { id: 'ai', icon: FaRobot, color: '#7C6FF0', label: 'AI / RAG' },
 ]
 
-const GLOBE_RADIUS = 1.3
+const GLOBE_RADIUS = 1.5
 
 function fibonacciSpherePoints(n, radius) {
   const points = []
@@ -57,15 +65,15 @@ function Compartment({ position, color, icon: Icon }) {
   return (
     <group>
       <mesh position={panelPos} quaternion={quaternion}>
-        <circleGeometry args={[0.19, 32]} />
+        <circleGeometry args={[0.17, 32]} />
         <meshStandardMaterial color="#17171A" metalness={0.3} roughness={0.6} />
       </mesh>
       <mesh position={panelPos} quaternion={quaternion}>
-        <ringGeometry args={[0.17, 0.19, 32]} />
+        <ringGeometry args={[0.15, 0.17, 32]} />
         <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.5} side={THREE.DoubleSide} />
       </mesh>
       <Html position={iconPos} center distanceFactor={5.5} style={{ pointerEvents: 'none' }}>
-        <Icon size={22} color={color} />
+        <Icon size={19} color={color} />
       </Html>
     </group>
   )
@@ -95,7 +103,7 @@ function Globe() {
 export default function Hero3D() {
   return (
     <div className="relative overflow-hidden w-full h-[380px] sm:h-[460px]">
-      <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+      <Canvas camera={{ position: [0, 0, 5.5], fov: 45 }}>
         <ambientLight intensity={0.6} />
         <pointLight position={[3, 2, 4]} intensity={30} color="#FF6B45" />
         <pointLight position={[-3, -2, 2]} intensity={20} color="#7C6FF0" />

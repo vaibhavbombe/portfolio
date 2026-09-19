@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import { FiSun, FiMoon } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
 
 const links = [
@@ -25,7 +26,7 @@ export default function Navbar() {
               to={link.to}
               className={({ isActive }) =>
                 `relative pb-1 ${
-                  isActive ? 'text-white' : 'text-muted hover:text-fg transition-colors'
+                  isActive ? 'text-coral' : 'text-muted hover:text-fg transition-colors'
                 }`
               }
             >
@@ -35,7 +36,7 @@ export default function Navbar() {
                   {isActive && (
                     <span
                       key={link.to}
-                      className="absolute left-0 -bottom-0.5 w-full h-[2px] bg-white origin-left animate-flashIn"
+                      className="absolute left-0 -bottom-0.5 w-full h-[2px] bg-coral origin-left animate-flashIn"
                     />
                   )}
                 </>
@@ -46,9 +47,9 @@ export default function Navbar() {
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="px-3 py-1 rounded-full border border-line text-muted hover:text-coral hover:border-coral/50 transition-colors text-xs"
+            className="w-9 h-9 flex items-center justify-center rounded-full border border-line text-muted hover:text-coral hover:border-coral/50 transition-colors"
           >
-            {theme === 'dark' ? 'light' : 'dark'}
+            {theme === 'dark' ? <FiSun size={16} /> : <FiMoon size={16} />}
           </button>
         </div>
       </nav>

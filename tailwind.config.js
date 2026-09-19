@@ -32,9 +32,15 @@ export default {
           '0%': { transform: 'scaleX(0)', opacity: '0.4' },
           '100%': { transform: 'scaleX(1)', opacity: '1' },
         },
+        marqueeX: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
         flashIn: 'flashIn 0.3s ease-out',
+        'marquee-y': 'marqueeY 18s linear infinite',
+        'marquee-x': 'marqueeX 25s linear infinite',
       },
     },
   },

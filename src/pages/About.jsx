@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react'
+import TechMarquee from '../components/TechMarquee'
+
 const experience = [
   {
     role: 'Software Development Engineer',
@@ -19,10 +22,58 @@ const experience = [
   },
 ]
 
-const skills = [
-  'JavaScript', 'Node.js', 'Express', 'React', 'MongoDB', 'MySQL',
-  'HTML5', 'CSS3', 'C++', 'Java', 'Python', 'Git',
-]
+function GitHubStats() {
+  const [stats, setStats] = useState(null)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    fetch('https://api.github.com/users/vaibhavbombe')
+      .then((res) => {
+        if (!res.ok) throw new Error('GitHub API error')
+        return res.json()
+      })
+      .then((data) =>
+        setStats({
+          repos: data.public_repos,
+          followers: data.followers,
+        })
+      )
+      .catch(() => setError(true))
+  }, [])
+
+  return (
+    <div className="border border-line rounded-md p-6">
+      <h3 className="font-mono text-fg mb-3">GitHub</h3>
+      {error && <p className="text-sm text-muted">Couldn't load live stats right now.</p>}
+      {!error && !stats && <p className="text-sm text-muted">Loading...</p>}
+      {stats && (
+        <div className="flex gap-8">
+          <div>
+            <p className="font-mono text-2xl text-coral">{stats.repos}</p>
+            <p className="text-xs text-muted">public repos</p>
+          </div>
+          <div>
+            <p className="font-mono text-2xl text-coral">{stats.followers}</p>
+            <p className="text-xs text-muted">followers</p>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function LeetCodePlaceholder() {
+  return (
+    <div className="border border-line rounded-md p-6">
+      <h3 className="font-mono text-fg mb-2">LeetCode</h3>
+      <p className="text-sm text-muted">
+        Live problem-solving stats coming soon — LeetCode doesn't offer a
+        public API directly, so this needs a small backend proxy (planned
+        next, alongside Redis caching).
+      </p>
+    </div>
+  )
+}
 
 export default function About() {
   return (
@@ -52,14 +103,15 @@ export default function About() {
         ))}
       </div>
 
-      <h2 className="font-mono text-sm text-coral mb-4">skills</h2>
-      <div className="flex flex-wrap gap-x-4 gap-y-2 font-mono text-sm text-muted">
-        {skills.map((s, i) => (
-          <span key={s}>
-            {s}
-            {i < skills.length - 1 && <span className="text-line ml-4">/</span>}
-          </span>
-        ))}
+      <h2 className="font-mono text-sm text-coral mb-6">skills</h2>
+      <div className="mb-12">
+        <TechMarquee />
+      </div>
+
+      <h2 className="font-mono text-sm text-coral mb-4">progress</h2>
+      <div className="grid sm:grid-cols-2 gap-6">
+        <GitHubStats />
+        <LeetCodePlaceholder />
       </div>
     </section>
   )

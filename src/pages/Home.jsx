@@ -95,7 +95,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      {/* <section className="max-w-6xl mx-auto px-6 pb-20">
         <h2 className="font-mono text-sm text-coral mb-2">find me elsewhere</h2>
         <p className="text-muted max-w-xl mb-10">
           Code, problem-solving practice, and professional background — a
@@ -130,7 +130,7 @@ export default function Home() {
             <p className="text-sm text-muted">Professional background and network.</p>
           </a>
         </div>
-      </section>
+      </section> */}
     </>
   )
 }

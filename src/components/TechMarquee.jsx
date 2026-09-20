@@ -1,36 +1,6 @@
-import {
-  SiMongodb,
-  SiJavascript,
-  SiCss,
-  SiNodedotjs,
-  SiHtml5,
-  SiReact,
-  SiExpress,
-  SiMysql,
-  SiPython,
-  SiGit,
-  SiGithub,
-  SiDocker,
-  SiSocketdotio,
-} from 'react-icons/si'
+import { TECH_STACK } from '../data/techStack'
 
-const ITEMS = [
-  { icon: SiJavascript, color: '#F7DF1E' },
-  { icon: SiNodedotjs, color: '#539E43' },
-  { icon: SiExpress, color: '#F5F5F3' },
-  { icon: SiReact, color: '#61DAFB' },
-  { icon: SiMongodb, color: '#47A248' },
-  { icon: SiMysql, color: '#4479A1' },
-  { icon: SiHtml5, color: '#E34F26' },
-  { icon: SiCss, color: '#1572B6' },
-  { icon: SiPython, color: '#3776AB' },
-  { icon: SiGit, color: '#F05032' },
-  { icon: SiGithub, color: '#F5F5F3' },
-  { icon: SiDocker, color: '#2496ED' },
-  { icon: SiSocketdotio, color: '#F5F5F3' },
-]
-
-const LOOPED = [...ITEMS, ...ITEMS]
+const LOOPED = [...TECH_STACK, ...TECH_STACK]
 
 export default function TechMarquee() {
   return (

@@ -1,0 +1,35 @@
+import {
+  SiMongodb,
+  SiJavascript,
+  SiCss,
+  SiNodedotjs,
+  SiHtml5,
+  SiReact,
+  SiExpress,
+  SiMysql,
+  SiPython,
+  SiGit,
+  SiGithub,
+  SiDocker,
+  SiSocketdotio,
+  SiPostman,
+} from 'react-icons/si'
+import { FaRobot } from 'react-icons/fa'
+
+export const TECH_STACK = [
+  { id: 'js', icon: SiJavascript, color: '#F7DF1E', label: 'JavaScript' },
+  { id: 'nodejs', icon: SiNodedotjs, color: '#539E43', label: 'Node.js' },
+  { id: 'express', icon: SiExpress, color: '#F5F5F3', label: 'Express' },
+  { id: 'react', icon: SiReact, color: '#61DAFB', label: 'React' },
+  { id: 'mongodb', icon: SiMongodb, color: '#47A248', label: 'MongoDB' },
+  { id: 'mysql', icon: SiMysql, color: '#4479A1', label: 'MySQL' },
+  { id: 'html5', icon: SiHtml5, color: '#E34F26', label: 'HTML5' },
+  { id: 'css3', icon: SiCss, color: '#1572B6', label: 'CSS3' },
+  { id: 'python', icon: SiPython, color: '#3776AB', label: 'Python' },
+  { id: 'git', icon: SiGit, color: '#F05032', label: 'Git' },
+  { id: 'github', icon: SiGithub, color: '#F5F5F3', label: 'GitHub' },
+  { id: 'docker', icon: SiDocker, color: '#2496ED', label: 'Docker' },
+  { id: 'socketio', icon: SiSocketdotio, color: '#F5F5F3', label: 'Socket.io' },
+  { id: 'postman', icon: SiPostman, color: '#FF6C37', label: 'Postman' },
+  { id: 'ai', icon: FaRobot, color: '#7C6FF0', label: 'AI / RAG' },
+]

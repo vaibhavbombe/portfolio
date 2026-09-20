@@ -2,39 +2,7 @@ import { useMemo } from 'react'
 import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
 import { Html, OrbitControls } from '@react-three/drei'
-import {
-  SiMongodb,
-  SiJavascript,
-  SiCss,
-  SiNodedotjs,
-  SiHtml5,
-  SiReact,
-  SiExpress,
-  SiMysql,
-  SiPython,
-  SiGit,
-  SiGithub,
-  SiDocker,
-  SiSocketdotio,
-} from 'react-icons/si'
-import { FaRobot } from 'react-icons/fa'
-
-const TECHS = [
-  { id: 'js', icon: SiJavascript, color: '#F7DF1E', label: 'JavaScript' },
-  { id: 'nodejs', icon: SiNodedotjs, color: '#539E43', label: 'Node.js' },
-  { id: 'express', icon: SiExpress, color: '#F5F5F3', label: 'Express' },
-  { id: 'react', icon: SiReact, color: '#61DAFB', label: 'React' },
-  { id: 'mongodb', icon: SiMongodb, color: '#47A248', label: 'MongoDB' },
-  { id: 'mysql', icon: SiMysql, color: '#4479A1', label: 'MySQL' },
-  { id: 'html5', icon: SiHtml5, color: '#E34F26', label: 'HTML5' },
-  { id: 'css3', icon: SiCss, color: '#1572B6', label: 'CSS3' },
-  { id: 'python', icon: SiPython, color: '#3776AB', label: 'Python' },
-  { id: 'git', icon: SiGit, color: '#F05032', label: 'Git' },
-  { id: 'github', icon: SiGithub, color: '#F5F5F3', label: 'GitHub' },
-  { id: 'docker', icon: SiDocker, color: '#2496ED', label: 'Docker' },
-  { id: 'socketio', icon: SiSocketdotio, color: '#F5F5F3', label: 'Socket.io' },
-  { id: 'ai', icon: FaRobot, color: '#7C6FF0', label: 'AI / RAG' },
-]
+import { TECH_STACK } from '../data/techStack'
 
 const GLOBE_RADIUS = 1.5
 
@@ -80,7 +48,7 @@ function Compartment({ position, color, icon: Icon }) {
 }
 
 function Globe() {
-  const points = useMemo(() => fibonacciSpherePoints(TECHS.length, GLOBE_RADIUS), [])
+  const points = useMemo(() => fibonacciSpherePoints(TECH_STACK.length, GLOBE_RADIUS), [])
 
   return (
     <group>
@@ -93,7 +61,7 @@ function Globe() {
         <meshBasicMaterial color="#3A3A40" wireframe transparent opacity={0.2} />
       </mesh>
 
-      {TECHS.map((tech, i) => (
+      {TECH_STACK.map((tech, i) => (
         <Compartment key={tech.id} position={points[i]} color={tech.color} icon={tech.icon} />
       ))}
     </group>
@@ -112,7 +80,7 @@ export default function Hero3D() {
           enableZoom={false}
           enablePan={false}
           autoRotate
-          autoRotateSpeed={2.0}
+          autoRotateSpeed={0.8}
         />
       </Canvas>
     </div>

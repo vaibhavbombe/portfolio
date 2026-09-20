@@ -18,6 +18,12 @@ const contactSchema = new mongoose.Schema({
 
 const Contact = mongoose.model('Contact', contactSchema)
 
+const redis = require('redis')
+
+const redisClient = redis.createClient({ url: process.env.REDIS_URL })
+redisClient.on('error', (err) => console.error('Redis error:', err))
+redisClient.connect().then(() => console.log('Redis connected'))
+
 const app = express()
 app.use(cors())
 app.use(express.json())
@@ -52,6 +58,76 @@ app.post('/api/contact', async (req, res) => {
   } catch (err) {
     console.error('Contact submission failed:', err)
     res.status(500).json({ error: 'Failed to send message.' })
+  }
+})
+
+const CACHE_TTL_SECONDS = 60 * 60 // 1 hour
+
+app.get('/api/github-stats', async (req, res) => {
+  const cacheKey = 'github-stats'
+
+  try {
+    const cached = await redisClient.get(cacheKey)
+    if (cached) {
+      return res.json({ ...JSON.parse(cached), cached: true })
+    }
+
+    const response = await fetch('https://api.github.com/users/vaibhavbombe')
+    const data = await response.json()
+
+    const result = {
+      repos: data.public_repos,
+      followers: data.followers,
+    }
+
+    await redisClient.setEx(cacheKey, CACHE_TTL_SECONDS, JSON.stringify(result))
+    res.json({ ...result, cached: false })
+  } catch (err) {
+    console.error('GitHub stats fetch failed:', err)
+    res.status(500).json({ error: 'Could not fetch GitHub stats.' })
+  }
+})
+
+app.get('/api/leetcode-stats', async (req, res) => {
+  const cacheKey = 'leetcode-stats'
+
+  try {
+    const cached = await redisClient.get(cacheKey)
+    if (cached) {
+      return res.json({ ...JSON.parse(cached), cached: true })
+    }
+
+    const response = await fetch('https://leetcode.com/graphql', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query getUserProfile($username: String!) {
+            matchedUser(username: $username) {
+              submitStats {
+                acSubmissionNum {
+                  difficulty
+                  count
+                }
+              }
+            }
+          }
+        `,
+        variables: { username: 'vaibhavbombe2017' },
+      }),
+    })
+
+    const json = await response.json()
+    const stats = json.data.matchedUser.submitStats.acSubmissionNum
+    const total = stats.find((s) => s.difficulty === 'All')?.count || 0
+
+    const result = { totalSolved: total }
+
+    await redisClient.setEx(cacheKey, CACHE_TTL_SECONDS, JSON.stringify(result))
+    res.json({ ...result, cached: false })
+  } catch (err) {
+    console.error('LeetCode stats fetch failed:', err)
+    res.status(500).json({ error: 'Could not fetch LeetCode stats.' })
   }
 })
 

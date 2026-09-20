@@ -27,22 +27,22 @@ function GitHubStats() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    fetch('https://api.github.com/users/vaibhavbombe')
+    fetch('http://localhost:5000/api/github-stats')
       .then((res) => {
-        if (!res.ok) throw new Error('GitHub API error')
+        if (!res.ok) throw new Error('failed')
         return res.json()
       })
-      .then((data) =>
-        setStats({
-          repos: data.public_repos,
-          followers: data.followers,
-        })
-      )
+      .then(setStats)
       .catch(() => setError(true))
   }, [])
 
   return (
-    <div className="border border-line rounded-md p-6">
+    <a
+      href="https://github.com/vaibhavbombe"
+      target="_blank"
+      rel="noreferrer"
+      className="block border border-line rounded-md p-6 hover:border-coral/50 transition-colors"
+    >
       <h3 className="font-mono text-fg mb-3">GitHub</h3>
       {error && <p className="text-sm text-muted">Couldn't load live stats right now.</p>}
       {!error && !stats && <p className="text-sm text-muted">Loading...</p>}
@@ -58,20 +58,41 @@ function GitHubStats() {
           </div>
         </div>
       )}
-    </div>
+    </a>
   )
 }
 
-function LeetCodePlaceholder() {
+function LeetCodeStats() {
+  const [stats, setStats] = useState(null)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/leetcode-stats')
+      .then((res) => {
+        if (!res.ok) throw new Error('failed')
+        return res.json()
+      })
+      .then(setStats)
+      .catch(() => setError(true))
+  }, [])
+
   return (
-    <div className="border border-line rounded-md p-6">
-      <h3 className="font-mono text-fg mb-2">LeetCode</h3>
-      <p className="text-sm text-muted">
-        Live problem-solving stats coming soon — LeetCode doesn't offer a
-        public API directly, so this needs a small backend proxy (planned
-        next, alongside Redis caching).
-      </p>
-    </div>
+    <a
+      href="https://leetcode.com/u/vaibhavbombe2017/"
+      target="_blank"
+      rel="noreferrer"
+      className="block border border-line rounded-md p-6 hover:border-coral/50 transition-colors"
+    >
+      <h3 className="font-mono text-fg mb-3">LeetCode</h3>
+      {error && <p className="text-sm text-muted">Couldn't load live stats right now.</p>}
+      {!error && !stats && <p className="text-sm text-muted">Loading...</p>}
+      {stats && (
+        <div>
+          <p className="font-mono text-2xl text-coral">{stats.totalSolved}</p>
+          <p className="text-xs text-muted">problems solved</p>
+        </div>
+      )}
+    </a>
   )
 }
 
@@ -111,7 +132,7 @@ export default function About() {
       <h2 className="font-mono text-sm text-coral mb-4">progress</h2>
       <div className="grid sm:grid-cols-2 gap-6">
         <GitHubStats />
-        <LeetCodePlaceholder />
+        <LeetCodeStats />
       </div>
     </section>
   )

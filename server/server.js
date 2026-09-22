@@ -73,8 +73,17 @@ app.get('/api/github-stats', async (req, res) => {
       return res.json({ ...JSON.parse(cached), cached: true })
     }
 
-    const response = await fetch('https://api.github.com/users/vaibhavbombe')
+    const response = await fetch('https://api.github.com/users/vaibhavbombe', {
+      headers: process.env.GITHUB_TOKEN
+        ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` }
+        : {},
+    })
     const data = await response.json()
+
+    if (!response.ok || typeof data.public_repos !== 'number') {
+      console.error('GitHub API returned unexpected response:', data)
+      return res.status(502).json({ error: 'GitHub API unavailable right now.' })
+    }
 
     const result = {
       repos: data.public_repos,

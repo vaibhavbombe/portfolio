@@ -46,6 +46,7 @@ app.post('/api/contact', async (req, res) => {
   try {
     await Contact.create({ name, email, message })
 
+    io.to('admin-room').emit('new-contact', { name, message, time: new Date().toISOString() })
     await transporter.sendMail({
       from: `"Portfolio Contact Form" <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
@@ -145,6 +146,11 @@ io.on('connection', (socket) => {
   visitorCount++
   io.emit('visitor-count', visitorCount)
   console.log(`Client connected. Total: ${visitorCount}`)
+
+  if (socket.handshake.query.adminKey === process.env.ADMIN_SOCKET_KEY) {
+    socket.join('admin-room')
+    console.log('Admin socket joined admin-room')
+  }
 
   socket.on('disconnect', () => {
     visitorCount--

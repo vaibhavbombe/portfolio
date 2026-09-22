@@ -1,156 +1,141 @@
-# 🚀 Vaibhav Bombe — Portfolio
+# Vaibhav Bombe — Portfolio
 
-A modern, responsive personal portfolio built with **React**, **Vite**, and **Tailwind CSS**, showcasing my projects, skills, and background. Includes light/dark theme support and smooth navigation across multiple pages.
+A full-stack portfolio site built as a live learning project — shipping real
+features (not tutorials-only) across the MERN stack, React Three Fiber,
+Socket.io, Redis, and (upcoming) an AI chat feature with RAG.
 
-🔗 **Live Site:** [https://vaibhavbombe.github.io/portfolio/](https://vaibhavbombe.github.io/portfolio/)
-
----
-
-## 📸 Preview
-
-<!-- Add a screenshot of your portfolio here -->
-<!-- ![Portfolio Preview](./src/assets/hero.png) -->
+**Live site:** https://vaibhav-bombe-portfolio.vercel.app
+**Backend API:** https://vaibhav-portfolio-api.onrender.com
 
 ---
 
-## ✨ Features
+## What's in here
 
-- ⚡ Fast, modern build powered by **Vite**
-- 🎨 Styled with **Tailwind CSS** for a clean, responsive UI
-- 🌗 Light/Dark theme toggle via React Context
-- 🧭 Multi-page navigation with **React Router**
-- 📱 Fully responsive across mobile, tablet, and desktop
-- 🗂️ Modular, reusable component architecture
-
----
-
-## 🛠️ Tech Stack
-
-| Category | Technology |
-|---|---|
-| Frontend | React 18 |
-| Build Tool | Vite |
-| Styling | Tailwind CSS |
-| Routing | React Router DOM v7 |
-| Linting | ESLint |
-| Deployment | GitHub Pages |
+- **Home** — dark hero section with an interactive 3D "tech globe" (React
+  Three Fiber), draggable and auto-rotating, showing the stack below as
+  compartments on its surface. Includes a "currently learning" section and
+  live GitHub/LeetCode links.
+- **About** — experience, a horizontally auto-scrolling tech-stack marquee,
+  and **live** GitHub + LeetCode stats pulled through the backend (cached
+  via Redis, not re-fetched on every page load).
+- **Projects** — biCanvas and AGROFAM, with tech tags.
+- **Hire Me** — a real contact form: submissions are saved to MongoDB *and*
+  emailed via Gmail/Nodemailer, with live validation and error states.
+- **Dark/light theme toggle** — persisted in `localStorage`, respects system
+  preference on first visit.
+- **Live visitor counter** — real-time, via Socket.io, shown in the footer.
+- **Real-time contact notifications** — when someone submits the Hire Me
+  form, a toast appears instantly for the site owner (via a Socket.io
+  "admin room"), without polling or refreshing.
 
 ---
 
-## 📁 Project Structure
+## Tech stack
+
+**Frontend** (`/client`)
+- React 18 + Vite
+- Tailwind CSS (custom design tokens, dark mode via CSS variables)
+- React Router
+- React Three Fiber + drei (3D globe)
+- Socket.io Client
+- react-icons
+
+**Backend** (`/server`)
+- Node.js + Express
+- MongoDB (via Mongoose) — contact form persistence
+- Redis — caching external API responses (GitHub, LeetCode) with a 1-hour TTL
+- Socket.io — live visitor count, real-time contact notifications (with
+  room-based targeting)
+- Nodemailer — sends contact form submissions to Gmail via an app password
+- GitHub REST API (token-authenticated) + LeetCode's GraphQL endpoint, both
+  proxied and cached server-side
+
+**Coming next**
+- AI chat feature: Python + FastAPI service using retrieval-augmented
+  generation (RAG) over resume/project data
+- Docker + CI/CD (GitHub Actions) for both services
+- Automated tests (frontend + backend)
+
+---
+
+## Project structure
 
 ```
 portfolio/
-├── public/
-│   ├── favicon.svg
-│   └── icons.svg
-├── src/
-│   ├── assets/          # Images and static assets
-│   ├── components/      # Reusable UI components
-│   │   ├── Navbar.jsx
-│   │   ├── Footer.jsx
-│   │   └── ProjectCard.jsx
-│   ├── context/
-│   │   └── ThemeContext.jsx   # Light/dark theme provider
-│   ├── pages/
-│   │   ├── Home.jsx
-│   │   ├── About.jsx
-│   │   ├── Projects.jsx
-│   │   └── HireMe.jsx
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-├── tailwind.config.js
-├── postcss.config.js
-├── vite.config.js
-└── package.json
+  client/                 React + Vite frontend
+    src/
+      components/         Navbar, Footer, Hero3D, TechMarquee, etc.
+      pages/               Home, About, Projects, HireMe
+      context/             ThemeContext (dark/light mode)
+      data/                 Shared tech-stack data (used by globe + marquee)
+      socket.js             Shared Socket.io client connection
+      config.js              API_URL, environment-aware
+    vercel.json              SPA rewrite rules (fixes refresh 404s)
+  server/                  Express backend
+    server.js                All routes + Socket.io + Mongo/Redis connections
+    .env                     Local secrets (not committed)
 ```
 
 ---
 
-## 🚦 Getting Started
+## Running locally
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v18 or higher recommended)
-- npm (comes with Node.js)
+You'll need two terminals running at the same time — one for the frontend,
+one for the backend.
 
-### Installation
-
+**Frontend**
 ```bash
-# Clone the repository
-git clone https://github.com/vaibhavbombe/portfolio.git
-
-# Navigate into the project folder
-cd portfolio
-
-# Install dependencies
+cd client
 npm install
-```
-
-### Running Locally
-
-```bash
 npm run dev
 ```
+Runs at `http://localhost:5173`.
 
-The app will be available at `http://localhost:5173/` (or the port Vite assigns).
-
-### Building for Production
-
+**Backend**
 ```bash
-npm run build
+cd server
+npm install
+npm run dev
+```
+Runs at `http://localhost:5000`.
+
+### Environment variables
+
+Neither `.env` file is committed (both are gitignored). You'll need to
+create them yourself:
+
+**`server/.env`**
+```
+GMAIL_USER=your-email@gmail.com
+GMAIL_APP_PASSWORD=your-16-char-app-password
+MONGODB_URI=your-mongodb-atlas-connection-string
+REDIS_URL=your-redis-cloud-connection-string
+GITHUB_TOKEN=your-github-personal-access-token
+ADMIN_SOCKET_KEY=any-shared-secret-string
+PORT=5000
 ```
 
-This generates an optimized build in the `dist/` folder.
-
-### Preview Production Build
-
-```bash
-npm run preview
+**`client/.env`**
+```
+VITE_API_URL=http://localhost:5000
+VITE_ADMIN_SOCKET_KEY=same-value-as-server's-ADMIN_SOCKET_KEY
 ```
 
 ---
 
-## 🌍 Deployment
+## Deployment
 
-This project is deployed using **GitHub Pages** via the `gh-pages` package.
-
-```bash
-npm run deploy
-```
-
-This runs `npm run build` automatically, then pushes the contents of `dist/` to the `gh-pages` branch, which GitHub Pages serves at:
-
-```
-https://vaibhavbombe.github.io/portfolio/
-```
+- **Frontend** deploys automatically to **Vercel** on every push to
+  `master` (Root Directory: `client`)
+- **Backend** deploys automatically to **Render** on every push to
+  `master` (Root Directory: `server`)
+- Both services read their environment variables from their respective
+  hosting dashboards in production — not from any committed file.
 
 ---
 
-## 📄 Pages
+## Status
 
-| Page | Description |
-|---|---|
-| **Home** | Landing page with intro and hero section |
-| **About** | Background, skills, and experience |
-| **Projects** | Showcase of featured projects |
-| **Hire Me** | Contact / hire information |
-
----
-
-## 🤝 Connect With Me
-
-<!-- Add your links below -->
-- **GitHub:** [@vaibhavbombe](https://github.com/vaibhavbombe)
-- **LinkedIn:** _add your link_
-- **Email:** _add your email_
-
----
-
-## 📜 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-⭐ If you like this project, consider giving it a star on GitHub!
+Actively being built, feature by feature, as a learning project. See the
+"currently learning" section on the live site's Home page for an
+up-to-date, specific account of what's been shipped and what's next.

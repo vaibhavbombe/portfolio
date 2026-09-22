@@ -4,29 +4,29 @@ import Hero3D from '../components/Hero3D'
 const stats = [
   { value: '2+', label: 'years professional experience' },
   { value: '2', label: 'production platforms shipped' },
-  { value: '10+', label: 'technologies in active use' },
+  { value: '5', label: 'new technologies shipped on this site' },
 ]
 
 const learning = [
   {
     title: 'Three.js / React Three Fiber',
-    detail: 'Building the 3D interface you\'re looking at right now — real-time rendering, scene graphs, and interaction design in the browser.',
+    detail: 'Built the interactive globe you see on this page from scratch — Fibonacci-sphere point distribution, orbit controls, and a shared data source driving both this and the About page.',
   },
   {
     title: 'Socket.io',
-    detail: 'Real-time features — live updates and two-way communication between client and server, beyond plain request/response APIs.',
+    detail: 'Shipped three real features with it: a live visitor counter, instant contact-form notifications, and room-based targeting — plus handled reconnection state honestly instead of hiding it.',
   },
   {
     title: 'Redis',
-    detail: 'Caching and rate-limiting for external API calls (GitHub, LeetCode stats) on the Progress page I\'m adding next.',
+    detail: 'Caching GitHub and LeetCode API responses server-side with a 1-hour expiry, so repeat visits don\'t re-hit those APIs — visible in the About page\'s progress cards.',
   },
   {
     title: 'Applied AI / RAG',
-    detail: 'A small Python + FastAPI service behind an AI chat feature — retrieval-augmented generation over my own resume data, served in production.',
+    detail: 'Next up: a Python + FastAPI service behind an AI chat feature — retrieval-augmented generation over my own resume data, served in production.',
   },
   {
     title: 'Docker + CI/CD + AWS',
-    detail: 'Containerizing every service, automated testing on push via GitHub Actions, then deploying the whole stack to AWS.',
+    detail: 'Still ahead: containerizing every service, automated testing on push via GitHub Actions, then deploying the whole stack to AWS.',
   },
 ]
 

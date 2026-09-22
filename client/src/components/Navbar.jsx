@@ -18,7 +18,6 @@ export default function Navbar() {
         <span className="font-mono text-sm text-fg">
           <span className="text-muted"></span>Vaibhav Bombe
         </span>
-
         <div className="flex items-center gap-6 font-mono text-sm">
           {links.map((link) => (
             <NavLink

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import TechMarquee from '../components/TechMarquee'
+import { API_URL } from '../config'
 
 const experience = [
   {
@@ -27,7 +28,7 @@ function GitHubStats() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/github-stats')
+    fetch(`${API_URL}/api/github-stats`)
       .then((res) => {
         if (!res.ok) throw new Error('failed')
         return res.json()
@@ -67,7 +68,7 @@ function LeetCodeStats() {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/leetcode-stats')
+    fetch(`${API_URL}/api/leetcode-stats`)
       .then((res) => {
         if (!res.ok) throw new Error('failed')
         return res.json()

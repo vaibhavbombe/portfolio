@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
 import HireMe from './pages/HireMe'
+import ContactNotifier from './components/ContactNotifier'
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
               <Route path="/hire-me" element={<HireMe />} />
             </Routes>
           </main>
+          <ContactNotifier />
           <Footer />
         </div>
       </BrowserRouter>

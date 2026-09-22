@@ -1,11 +1,13 @@
 import { FiGithub, FiLinkedin } from 'react-icons/fi'
 import { SiLeetcode } from 'react-icons/si'
+import LiveVisitors from './LiveVisitors'
 
 export default function Footer() {
   return (
     <footer className="border-t border-line">
-      <div className="max-w-4xl mx-auto px-6 py-8 flex items-center justify-between">
+      <div className="max-w-4xl mx-auto px-6 py-8 flex items-center justify-between flex-wrap gap-4">
         <span className="font-mono text-xs text-muted">&copy; {new Date().getFullYear()} vaibhav bombe</span>
+        <LiveVisitors />
         <div className="flex items-center gap-4">
           <a
             href="https://github.com/vaibhavbombe"
@@ -32,8 +34,8 @@ export default function Footer() {
             aria-label="LeetCode"
             className="text-muted hover:text-coral transition-colors"
           > */}
-            {/* <SiLeetcode size={18} />
-          </a> */}
+            {/* <SiLeetcode size={18} /> */}
+          {/* </a> */}
         </div>
       </div>
     </footer>

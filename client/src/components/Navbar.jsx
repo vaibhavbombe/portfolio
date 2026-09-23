@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { FiSun, FiMoon } from 'react-icons/fi'
+import { FiSun, FiMoon, FiMenu, FiX } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
+import LiveVisitors from './LiveVisitors'
 
 const links = [
   { to: '/', label: 'home' },
@@ -11,6 +13,7 @@ const links = [
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur">
@@ -18,7 +21,9 @@ export default function Navbar() {
         <span className="font-mono text-sm text-fg">
           <span className="text-muted"></span>Vaibhav Bombe
         </span>
-        <div className="flex items-center gap-6 font-mono text-sm">
+
+        {/* Desktop links - hidden on small screens */}
+        <div className="hidden md:flex items-center gap-6 font-mono text-sm">
           {links.map((link) => (
             <NavLink
               key={link.to}
@@ -42,7 +47,10 @@ export default function Navbar() {
               )}
             </NavLink>
           ))}
+        </div>
 
+        {/* Right side: theme toggle always visible, hamburger only on mobile */}
+        <div className="flex items-center gap-3">
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
@@ -50,8 +58,34 @@ export default function Navbar() {
           >
             {theme === 'dark' ? <FiSun size={16} /> : <FiMoon size={16} />}
           </button>
+
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Toggle menu"
+            className="md:hidden w-9 h-9 flex items-center justify-center text-fg"
+          >
+            {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+          </button>
         </div>
       </nav>
+
+      {/* Mobile dropdown menu */}
+      {menuOpen && (
+        <div className="md:hidden border-t border-line px-6 py-4 flex flex-col gap-4 font-mono text-sm bg-bg">
+          {links.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                isActive ? 'text-coral' : 'text-muted hover:text-fg transition-colors'
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
+      )}
     </header>
   )
 }

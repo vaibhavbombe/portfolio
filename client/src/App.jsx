@@ -7,6 +7,7 @@ import About from './pages/About'
 import Projects from './pages/Projects'
 import HireMe from './pages/HireMe'
 import ContactNotifier from './components/ContactNotifier'
+import ChatWidget from './components/ChatWidget'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
             </Routes>
           </main>
           <ContactNotifier />
+          <ChatWidget />
           <Footer />
         </div>
       </BrowserRouter>

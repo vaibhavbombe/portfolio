@@ -141,6 +141,33 @@ app.get('/api/leetcode-stats', async (req, res) => {
   }
 })
 
+app.post('/api/chat', async (req, res) => {
+  const { message } = req.body
+
+  if (!message) {
+    return res.status(400).json({ error: 'Message is required.' })
+  }
+
+  try {
+    const aiServiceUrl = process.env.AI_SERVICE_URL || 'http://localhost:8000'
+    const response = await fetch(`${aiServiceUrl}/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message }),
+    })
+
+    if (!response.ok) {
+      throw new Error(`AI service responded with ${response.status}`)
+    }
+
+    const data = await response.json()
+    res.json(data)
+  } catch (err) {
+    console.error('Chat proxy failed:', err)
+    res.status(500).json({ error: 'AI service is unavailable right now.' })
+  }
+})
+
 const http = require('http')
 const { Server } = require('socket.io')
 

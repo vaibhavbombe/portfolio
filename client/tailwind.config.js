@@ -41,6 +41,12 @@ export default {
         flashIn: 'flashIn 0.3s ease-out',
         'marquee-y': 'marqueeY 18s linear infinite',
         'marquee-x': 'marqueeX 25s linear infinite',
+        'bot-pop': 'botPop 4s ease-in-out infinite',
+      },
+      botPop: {
+        '0%, 85%, 100%': { transform: 'scale(1)' },
+        '90%': { transform: 'scale(1.15)' },
+        '95%': { transform: 'scale(0.95)' },
       },
     },
   },

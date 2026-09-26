@@ -37,7 +37,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <p className="font-mono text-coral text-sm mb-4">
-              pune, india — open to freelance work
+              Pune, India — open to new opportunities
             </p>
             <h1 className="font-mono text-3xl sm:text-4xl font-medium text-[#F5F5F3] leading-tight mb-6">
               I build the frontend, wire up the backend, and keep the database honest.
@@ -59,7 +59,7 @@ export default function Home() {
                 to="/hire-me"
                 className="px-5 py-2.5 rounded-md border border-white/15 text-[#F5F5F3] text-sm font-medium hover:border-white/35 transition-colors"
               >
-                Work with me
+                Get in touch
               </Link>
             </div>
           </div>

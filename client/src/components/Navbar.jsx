@@ -8,9 +8,8 @@ const links = [
   { to: '/', label: 'home' },
   { to: '/about', label: 'about' },
   { to: '/projects', label: 'projects' },
-  { to: '/hire-me', label: 'hire-me' },
+  { to: '/hire-me', label: 'contact' },
 ]
-
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)

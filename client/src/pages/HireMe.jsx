@@ -38,9 +38,9 @@ export default function HireMe() {
 
   return (
     <section className="max-w-xl mx-auto px-6 py-16">
-      <h1 className="font-mono text-2xl text-fg mb-2">hire-me</h1>
+      <h1 className="font-mono text-2xl text-fg mb-2">contact</h1>
       <p className="text-muted mb-10">
-        Available for freelance and full-stack engineering work.
+        Open to full-time opportunities — let's talk about how I can contribute to your team.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">

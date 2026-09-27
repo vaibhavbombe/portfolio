@@ -2,6 +2,15 @@ import ProjectCard from '../components/ProjectCard'
 
 const projects = [
   {
+    title: 'Async Job Processor',
+    description:
+      "A background job queue that decouples slow, unreliable work from user requests — instant API responses, automatic retries with exponential backoff, permanent MongoDB history, and a live real-time dashboard. Built to explore async architecture beyond typical CRUD work.",
+    tech: ['Node.js', 'BullMQ', 'Redis', 'MongoDB', 'Socket.io', 'React', 'Chart.js'],
+    images: ['/job-queue-dashboard.jpeg', '/job-queue-architecture.svg'],
+    githubUrl: 'https://github.com/vaibhavbombe/async-job-processer',
+    liveUrl: 'https://async-job-processer.vercel.app/',
+  },
+  {
     title: 'biCanvas',
     description:
       'Unified business management platform covering procure-to-pay, sales, CRM, asset management, and HRM for infra & construction businesses.',

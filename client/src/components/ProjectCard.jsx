@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ImageLightbox from './ImageLightbox'
+import ImageLightbox from './ImageLightBox'
 
 export default function ProjectCard({ title, description, tech = [], images = [], githubUrl, liveUrl }) {
   const [lightboxSrc, setLightboxSrc] = useState(null)

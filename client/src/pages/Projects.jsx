@@ -2,12 +2,21 @@ import ProjectCard from '../components/ProjectCard'
 
 const projects = [
   {
+    title: 'URL Shortener',
+    description:
+      'A link-shortening service built around a classic systems-design tension: redirects must be near-instant and happen constantly, while link creation must stay collision-free under concurrent requests. Uses an atomic Redis counter for IDs, cache-aside redirects, per-IP rate limiting, and async batched click analytics instead of a write on every click.',
+    tech: ['Node.js', 'Redis', 'MongoDB', 'React', 'Chart.js'],
+    images: ['/url-shortener-view.jpeg','/url-shortener-architecture.svg'],
+    githubUrl: 'https://github.com/vaibhavbombe/url-shortener',
+    liveUrl: 'https://url-shortener-vsb10.vercel.app',
+  },
+  {
     title: 'Async Job Processor',
     description:
       "A background job queue that decouples slow, unreliable work from user requests — instant API responses, automatic retries with exponential backoff, permanent MongoDB history, and a live real-time dashboard. Built to explore async architecture beyond typical CRUD work.",
     tech: ['Node.js', 'BullMQ', 'Redis', 'MongoDB', 'Socket.io', 'React', 'Chart.js'],
     images: ['/job-queue-dashboard.jpeg', '/job-queue-architecture.svg'],
-    githubUrl: 'https://github.com/vaibhavbombe/async-job-processer',
+    githubUrl: 'https://github.com/vaibhavbombe/async-job-processor',
     liveUrl: 'https://async-job-processer.vercel.app/',
   },
   {

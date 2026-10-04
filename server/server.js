@@ -4,6 +4,7 @@ const cors = require('cors')
 const nodemailer = require('nodemailer')
 
 const mongoose = require('mongoose')
+const jwt = require('jsonwebtoken')
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB connected'))
@@ -168,6 +169,17 @@ app.post('/api/chat', async (req, res) => {
   }
 })
 
+app.post('/api/admin/login', (req, res) => {
+  const { password } = req.body
+
+  if (password !== process.env.ADMIN_PASSWORD) {
+    return res.status(401).json({ error: 'Incorrect password' })
+  }
+
+  const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '7d' })
+  res.json({ token })
+})
+
 const http = require('http')
 const { Server } = require('socket.io')
 
@@ -185,9 +197,16 @@ io.on('connection', (socket) => {
   io.emit('visitor-count', visitorCount)
   console.log(`Client connected. Total: ${visitorCount}`)
 
-  if (socket.handshake.query.adminKey === process.env.ADMIN_SOCKET_KEY) {
-    socket.join('admin-room')
-    console.log('Admin socket joined admin-room')
+  const token = socket.handshake.auth.token
+  if (token) {
+    try {
+      const payload = jwt.verify(token, process.env.JWT_SECRET)
+      if (payload.role === 'admin') {
+        socket.join('admin-room')
+      }
+    } catch (err) {
+      // Invalid or expired token: just don't join the room, no need to error.
+    }
   }
 
   socket.on('disconnect', () => {

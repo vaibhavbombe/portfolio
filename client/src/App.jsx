@@ -8,6 +8,7 @@ import Projects from './pages/Projects'
 import HireMe from './pages/HireMe'
 import ContactNotifier from './components/ContactNotifier'
 import ChatWidget from './components/ChatWidget'
+import AdminLogin from './pages/AdminLogin'
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/hire-me" element={<HireMe />} />
+              <Route path="/admin-login" element={<AdminLogin />} />
             </Routes>
           </main>
           <ContactNotifier />

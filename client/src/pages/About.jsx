@@ -5,22 +5,30 @@ import { API_URL } from '../config'
 const experience = [
   {
     role: 'Software Development Engineer',
-    company: 'Datadynamx Pvt Ltd.',
+    company: 'Datadynamx Pvt Ltd., Pune',
     dates: 'Apr 2024 — Present',
     bullets: [
-      'Lead a team of developers on a unified business management platform.',
-      'Architect centralized engines and shared components reused across apps.',
-      'Partner with Business Analysts to translate requirements into scalable solutions.',
+      'Lead a team of developers on a unified ERP platform spanning 5+ applications and 15+ modules for 10k+ users, owning task distribution, code reviews, and architectural mentorship.',
+      'Use GenAI to automate third-party integrations and report creation, and build analytics reports and dashboards.',
+      'Resolved 20+ production issues by rewriting network-call logic with RxJS and JavaScript and optimizing complex MongoDB queries under high traffic.',
+      'Architect centralized engines and reusable components shared across applications, and partner with Business Analysts to turn requirements into scalable solutions.',
     ],
   },
   {
     role: 'Front-End Developer Intern',
-    company: 'Synkrama Technologies',
+    company: 'Synkrama Technologies, Pune',
     dates: 'Jan 2023 — Mar 2023',
     bullets: [
-      "Hands-on experience with React's component-based architecture and state management.",
+      "Hands-on experience with React's component-based architecture, state management, and the broader React ecosystem.",
     ],
   },
+]
+
+const credentials = [
+  'B.E., Computer Engineering — MESCOE (GPA 8.88 / 10, 2023)',
+  'Future Ready Talent Internship — Microsoft Azure',
+  'Data Science (Honors Degree)',
+  'Google Cloud Ready Facilitator Program — Google (2020–2021)',
 ]
 
 function GitHubStats() {
@@ -101,10 +109,12 @@ export default function About() {
   return (
     <section className="max-w-4xl mx-auto px-6 py-16">
       <h1 className="font-mono text-2xl text-fg mb-2">about</h1>
-      <p className="text-muted mb-12 max-w-xl">
-        Software development engineer with 2+ years of full-stack experience,
-        currently growing into technical leadership while shipping
-        production-grade software.
+      <p className="text-muted mb-12 max-w-2xl leading-relaxed">
+        Full Stack Software Engineer with 3 years of experience across the MERN
+        stack and the JavaScript ecosystem, focused on bringing Generative AI into
+        real products. I build RAG pipelines, LLM integrations, real-time systems,
+        and scalable backends, and I lead a team shipping a production ERP
+        platform used by 10k+ users.
       </p>
 
       <h2 className="font-mono text-sm text-coral mb-6">experience</h2>
@@ -129,6 +139,13 @@ export default function About() {
       <div className="mb-12">
         <TechMarquee />
       </div>
+
+      <h2 className="font-mono text-sm text-coral mb-4">education & certifications</h2>
+      <ul className="space-y-1 text-sm text-muted mb-12">
+        {credentials.map((c) => (
+          <li key={c}>— {c}</li>
+        ))}
+      </ul>
 
       <h2 className="font-mono text-sm text-coral mb-4">progress</h2>
       <div className="grid sm:grid-cols-2 gap-6">

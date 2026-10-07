@@ -2,31 +2,29 @@ import { Link } from 'react-router-dom'
 import Hero3D from '../components/Hero3D'
 
 const stats = [
-  { value: '2+', label: 'years professional experience' },
-  { value: '2', label: 'production platforms shipped' },
-  { value: '5', label: 'new technologies shipped on this site' },
+  { value: '3', label: 'years building production software' },
+  { value: '5+', label: 'applications shipped' },
+  { value: '15+', label: 'modules built' },
+  { value: '10k+', label: 'users served' },
+  { value: '20+', label: 'production issues resolved' },
 ]
 
-const learning = [
+const focusAreas = [
   {
-    title: 'Three.js / React Three Fiber',
-    detail: 'Built the interactive globe you see on this page from scratch — Fibonacci-sphere point distribution, orbit controls, and a shared data source driving both this and the About page.',
+    title: 'Generative AI & RAG',
+    detail: 'LLM features grounded in real data: embeddings, semantic search, and retrieval-augmented generation. The assistant on this site runs on my own Python/FastAPI RAG service.',
   },
   {
-    title: 'Socket.io',
-    detail: 'Shipped three real features with it: a live visitor counter, instant contact-form notifications, and room-based targeting — plus handled reconnection state honestly instead of hiding it.',
+    title: 'AI automation in production',
+    detail: 'GenAI-driven automation of third-party integrations and report creation on a live ERP platform, backed by analytics reports and dashboards.',
   },
   {
-    title: 'Redis',
-    detail: 'Caching GitHub and LeetCode API responses server-side with a 1-hour expiry, so repeat visits don\'t re-hit those APIs — visible in the About page\'s progress cards.',
+    title: 'Real-time systems',
+    detail: 'Socket.io and Yjs CRDT collaboration: live cursors, user presence, instant notifications, and multi-user editing that never loses work.',
   },
   {
-    title: 'Applied AI / RAG',
-    detail: 'Next up: a Python + FastAPI service behind an AI chat feature — retrieval-augmented generation over my own resume data, served in production.',
-  },
-  {
-    title: 'Docker + CI/CD + AWS',
-    detail: 'Still ahead: containerizing every service, automated testing on push via GitHub Actions, then deploying the whole stack to AWS.',
+    title: 'Scalable backends',
+    detail: 'Redis caching and rate limiting, atomic ID generation, and BullMQ job queues with exponential backoff, all deployed and running.',
   },
 ]
 
@@ -37,23 +35,23 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <p className="font-mono text-coral text-sm mb-4">
-              Pune, India — open to new opportunities
+              full stack & genai engineer · pune, india · open to new opportunities
             </p>
             <h1 className="font-mono text-3xl sm:text-4xl font-medium text-[#F5F5F3] leading-tight mb-6">
-              I build the frontend, wire up the backend, and keep the database honest.
+              I build full-stack products and put AI to work inside them.
             </h1>
             <p className="text-[#A6A6AC] max-w-md mb-8 leading-relaxed">
-              Software Development Engineer with 2+ years shipping a unified
-              ERP platform for infra and construction clients at Datadynamx.
-              This site doubles as a live build log for what I'm teaching
-              myself next.
+              3 years shipping a unified ERP platform at Datadynamx (5+ applications,
+              15+ modules, 10k+ users), where I use GenAI to automate integrations
+              and report creation. Outside work, I build AI and systems projects end
+              to end: RAG assistants, real-time collaboration, and high-throughput backends.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/projects"
                 className="px-5 py-2.5 rounded-md bg-coral text-[#0B0B0D] text-sm font-medium hover:bg-coral-dim transition-colors"
               >
-                See what I've built
+                See my projects
               </Link>
               <Link
                 to="/hire-me"
@@ -62,6 +60,10 @@ export default function Home() {
                 Get in touch
               </Link>
             </div>
+            <p className="font-mono text-xs text-[#6B6B70] mt-6">
+              The assistant in the bottom-right corner is a RAG pipeline over my own
+              resume and project data. Ask it anything about me.
+            </p>
           </div>
 
           <Hero3D />
@@ -69,7 +71,7 @@ export default function Home() {
       </section>
 
       <section className="bg-bg border-b border-line">
-        <div className="max-w-6xl mx-auto px-6 py-12 grid sm:grid-cols-3 gap-8">
+        <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
           {stats.map((s) => (
             <div key={s.label}>
               <p className="font-mono text-3xl text-coral mb-1">{s.value}</p>
@@ -80,13 +82,13 @@ export default function Home() {
       </section>
 
       <section className="max-w-6xl mx-auto px-6 py-16">
-        <h2 className="font-mono text-sm text-coral mb-2">currently learning</h2>
+        <h2 className="font-mono text-sm text-coral mb-2">what i build</h2>
         <p className="text-muted max-w-xl mb-10">
-          The parts of this stack I hadn't touched professionally before
-          starting this project — building in public, feature by feature.
+          Every area below is backed by shipped, deployed work. See the projects
+          page for the details.
         </p>
         <div className="grid sm:grid-cols-2 gap-6">
-          {learning.map((item) => (
+          {focusAreas.map((item) => (
             <div key={item.title} className="border border-line rounded-md p-6">
               <h3 className="font-mono text-fg mb-2">{item.title}</h3>
               <p className="text-sm text-muted leading-relaxed">{item.detail}</p>
@@ -94,43 +96,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      {/* <section className="max-w-6xl mx-auto px-6 pb-20">
-        <h2 className="font-mono text-sm text-coral mb-2">find me elsewhere</h2>
-        <p className="text-muted max-w-xl mb-10">
-          Code, problem-solving practice, and professional background — a
-          fuller picture lives on these than fits on this page.
-        </p>
-        <div className="grid sm:grid-cols-3 gap-6">
-          <a
-            href="https://github.com/vaibhavbombe"
-            target="_blank"
-            rel="noreferrer"
-            className="border border-line rounded-md p-6 hover:border-coral/50 transition-colors block"
-          >
-            <h3 className="font-mono text-fg mb-2">GitHub</h3>
-            <p className="text-sm text-muted">Code, repos, and commit history.</p>
-          </a>
-          <a
-            href="https://leetcode.com/u/vaibhavbombe2017/"
-            target="_blank"
-            rel="noreferrer"
-            className="border border-line rounded-md p-6 hover:border-coral/50 transition-colors block"
-          >
-            <h3 className="font-mono text-fg mb-2">LeetCode</h3>
-            <p className="text-sm text-muted">Problem-solving practice and progress.</p>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/vabby13/"
-            target="_blank"
-            rel="noreferrer"
-            className="border border-line rounded-md p-6 hover:border-coral/50 transition-colors block"
-        >
-            <h3 className="font-mono text-fg mb-2">LinkedIn</h3>
-            <p className="text-sm text-muted">Professional background and network.</p>
-          </a>
-        </div>
-      </section> */}
     </>
   )
 }

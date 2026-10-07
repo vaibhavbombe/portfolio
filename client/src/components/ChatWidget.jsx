@@ -7,8 +7,7 @@ export default function ChatWidget() {
   const [open, setOpen] = useState(false)
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState([
-    { role: 'bot', text: "Hi — ask me anything about Vaibhav's background, projects, or skills." },
-  ])
+{ role: 'bot', text: "Hi! I'm Vaibhav's AI assistant. I answer from his real resume and project data using RAG. Ask about his GenAI work, projects, or experience." },  ])
   const messagesEndRef = useRef(null)
 
   useEffect(() => {

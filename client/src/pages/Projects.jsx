@@ -35,7 +35,7 @@ const projects = [
     description:
       'Background job queue that decouples slow work from API requests: instant responses, automatic retries with exponential backoff (up to 4 attempts) validated against a simulated 40% failure rate, permanent MongoDB job history, and a real-time dashboard tracking 5 job states live over Socket.io.',
     tech: ['Node.js', 'BullMQ', 'Redis', 'MongoDB', 'Socket.io', 'React', 'Chart.js'],
-    images: ['/job-queue-dashboard.png', '/job-queue-architecture.svg'],
+    images: ['/job-queue-dashboard.jpeg', '/job-queue-architecture.svg'],
     githubUrl: LINKS.jobQueueRepo,
     liveUrl: LINKS.jobQueueLive,
   },
@@ -44,7 +44,7 @@ const projects = [
     description:
       'High-throughput redirect service: collision-free 5-character base62 codes from an atomic Redis counter, cache-aside redirects with TTL-aligned link expiry, rate limiting at 10 requests/min per IP, and async click analytics batching up to 50 clicks every 3 seconds to cut database writes.',
     tech: ['Node.js', 'Redis', 'MongoDB', 'React', 'Chart.js'],
-    images: ['/shortener-architecture.svg'],
+    images: ['/url-shortener-architecture.jpeg', '/url-shortener-architecture.svg'],
     githubUrl: LINKS.shortenerRepo,
     liveUrl: LINKS.shortenerLive,
   },

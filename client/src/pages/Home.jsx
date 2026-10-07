@@ -35,7 +35,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <p className="font-mono text-coral text-sm mb-4">
-              full stack & genai engineer · pune, india · open to new opportunities
+              Full Stack & GenAI engineer · pune, india · open to new opportunities
             </p>
             <h1 className="font-mono text-3xl sm:text-4xl font-medium text-[#F5F5F3] leading-tight mb-6">
               I build full-stack products and put AI to work inside them.

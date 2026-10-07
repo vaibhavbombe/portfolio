@@ -44,7 +44,7 @@ const projects = [
     description:
       'High-throughput redirect service: collision-free 5-character base62 codes from an atomic Redis counter, cache-aside redirects with TTL-aligned link expiry, rate limiting at 10 requests/min per IP, and async click analytics batching up to 50 clicks every 3 seconds to cut database writes.',
     tech: ['Node.js', 'Redis', 'MongoDB', 'React', 'Chart.js'],
-    images: ['/url-shortener-architecture.jpeg', '/url-shortener-architecture.svg'],
+    images: ['/url-shortener-view.jpeg', '/url-shortener-architecture.svg'],
     githubUrl: LINKS.shortenerRepo,
     liveUrl: LINKS.shortenerLive,
   },
